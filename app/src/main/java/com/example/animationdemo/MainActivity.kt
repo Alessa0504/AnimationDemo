@@ -1,6 +1,5 @@
 package com.example.animationdemo
 
-import android.content.Context
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -56,7 +55,8 @@ class MainActivity : AppCompatActivity() {
 //            endPosArray!![0] = endPosArray!![0] + endView.width / 2 - 50f.dp2Px()   //50f.dp2Px():再通过数值微调
 //            endPosArray!![1] = endPosArray!![1] + endView.height / 2 - 120f.dp2Px()
             // === 方法2 ===
-            endPosArray!![0] = endPosArray!![0] + endView.width / 2 + startView.marginStart  //endView.width / 2是为了偏移至头像中心点
+            //由于起始偏移加了startView.marginStart，对应终止偏移也要加startView.marginStart
+            endPosArray!![0] = endPosArray!![0] + endView.width / 2 + startView.marginStart  //endView.width / 2 是为了偏移至头像中心点
             endPosArray!![1] = endPosArray!![1] + endView.height / 2 + startView.marginTop
             endView.setTag(R.id.personal_avatar, endPosArray)
         }

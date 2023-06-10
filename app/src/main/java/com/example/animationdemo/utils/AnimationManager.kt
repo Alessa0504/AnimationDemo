@@ -4,14 +4,11 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.os.Build
 import android.util.Log
 import android.view.animation.OvershootInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginLeft
 import androidx.core.view.marginStart
 import androidx.core.view.marginTop
 import com.example.animationdemo.R
@@ -60,7 +57,7 @@ class AnimationManager {
         val imageView = ImageView(parentView?.context)
         val layoutParams = FrameLayout.LayoutParams(80f.dp2Px(), 80f.dp2Px())
         // === 方法1 ===
-//        layoutParams.setMargins(flyEntity.startPos!![0], flyEntity.startPos!![1], 0, 0)
+//        layoutParams.setMargins(flyEntity.startPos!![0], flyEntity.startPos!![1], 0, 0)  //flyEntity.startPos是startView的左上角坐标，相当于margin
         imageView.layoutParams = layoutParams
         parentView?.addView(imageView)
         return imageView
@@ -98,7 +95,7 @@ class AnimationManager {
             "translationX",
             //!注：这是相对于flyImageView的起始&终止偏移量，但如果view设置了margin，就只能这样获取
             (startPos[0] + flyImageView.marginStart).toFloat(),
-            (endPos[0] - startPos[0] - 40f.dp2Px()).toFloat()
+            (endPos[0] - startPos[0] - 40f.dp2Px()).toFloat()   //40f.dp2Px()是endView的marginEnd
         )
         val translationY = ObjectAnimator.ofFloat(
             flyImageView,
